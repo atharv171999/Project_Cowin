@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            margin-left: 10vw;
+        }
+        .ig1{
+            width: ;
+        }
+        input{
+            border-color: black;
+            
+            color: black;
+            opacity: 0.5;
+            margin-top: 15vw;
+            padding: 5px;
+            outline: 3px;
+            border-style: solid;
+            width: 13vw;
+            height: 2vw;
+            font-size: 1.5vw;
+            border-bottom-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        .pin{
+            position: relative;
+
+        }
+        .age{
+            position: relative;
+            margin-top: 3vw;
+        }
+        .email{
+            position: relative;
+            margin-top: 3vw;
+        }
+        button{
+            
+            opacity: 0.9;
+            outline: 3px;
+            border-style: solid;
+            width: 11vw;
+            height: 3.5vw;
+            font-size: 2vw;
+            border-radius: 7px;
+            position: relative;
+            cursor: pointer;
+            margin-left: 2vw;
+            margin-top: 8vw;
+            margin-bottom: 25vw;
+        }
+        button:hover{
+            transition: ease-in-out 1ms;
+            background-color: rgb(224, 205, 33);
+            color: white;
+        }
+        .details{
+            border: 2px;
+            border-style: solid;
+            border-color: black;
+        }
+        .foot{
+            position: relative;
+            margin-top: 50rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <header>
+        <img class="ig1" src="https://th.bing.com/th/id/OIP.O0Gt0HiTYSSH8RPAMe8tkQHaCz?w=291&h=132&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="">
+    </header>
+    <article>
+     <div class="container">
+        <input class="pin" type="text" placeholder="Enter pincode">
+        <input class="age" type="text" placeholder="Enter age">
+        <input class="email" type="email" placeholder="Enter email">
+        <button>Result</button> 
+     </div>
+     </article>
+     <section>
+        <div class="butt">
+        </div>
+     </section> 
+        <div class="item">
+
+        </div>
+        <footer class="foot"></footer>
+</body>
+<script>
+    let body = document.querySelector("body");
+    let article = document.querySelector("article");
+    let section = document.querySelector("section");
+    let btn = document.querySelector("button");
+    let item = document.querySelector(".item");
+    let cont = document.querySelector(".container");
+    btn.addEventListener("click",async function(){
+        
+        while(item.firstChild){
+            item.removeChild(item.firstChild);
+        }
+    let pin = document.querySelector(".pin").value;
+    let age = document.querySelector(".age").value;
+    let email = document.querySelector(".email").value;
+        const response = await axios.get(`/details/${pin}/${age}/${email}`);
+    // console.log(response.data);
+    let arr = response.data;
+        for(let i=0;i<arr.length;i++){
+            let div = document.createElement("div");
+            div.classList.add("details");
+            let flag = true;
+            // console.log(arr[i]);
+        for(let key in arr[i]){
+            let h5 = document.createElement("h5");
+                let p = document.createElement("p");
+                h5.innerText = key;
+                p.innerText = arr[i][key];
+                div.appendChild(h5);
+                div.appendChild(p);
+
+            }
+            item.appendChild(div);
+        }
+        cont.innerHTML= " ";
+        })
+</script>
+</html>
