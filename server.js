@@ -3,6 +3,7 @@ const app = express()
 const path = require('path');
 const cp = require('child_process');
 const nodemailer = require("nodemailer");
+let PORT = process.env.PORT || 3000;
 
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -38,6 +39,7 @@ let info = await transporter.sendMail({
 console.log("Message sent: %s", info.messageId);
 })
 
-app.listen(3000)
+app.listen(PORT, function(req, res){
+  console.log("server is running");
+})
 
-console.log("server is running");
