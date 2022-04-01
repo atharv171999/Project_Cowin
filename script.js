@@ -5,7 +5,7 @@ let pin = process.argv[2];
 let age = Number(process.argv[3]);
 // console.log(age);
 (async () => {
-  const browser = await puppeteer.launch({headless : false});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto('https://www.cowin.gov.in/');
 //   await page.screenshot({ path: 'example.png' });
@@ -93,7 +93,7 @@ let settings = {
 }
 
 xlsx(data, settings) // Will download the excel file
-fs.writeFileSync("ScheduleOfVaccination.json",vaccination);
+// fs.writeFileSync("ScheduleOfVaccination.json",vaccination);
 console.log(vaccination);
 
 browser.close();
