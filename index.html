@@ -6,30 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        header{
+            background-color: rgb(221, 232, 243);
+        }
+        li{
+            list-style: none;
+            margin-left: 3vw;
+        }
+        .head{
+            font-size:7vw;
+            margin-left: 2vw;
+            letter-spacing: 3px;
+        }
+        .win{
+            font-size: 2vw;
+            letter-spacing: 2px;
+        }
+
+        .ig0{
+            width: 20vw;
+            height: 13vw;
+        }
+        .ig1{
+            width: 40vw;
         }
         .container{
             display: flex;
-            flex-direction: column;
-            margin-left: 10vw;
+            justify-content: space-between;
+            background-image: url("https://etimg.etb2bimg.com/photo/82209535.cms");
+            background-size: 98vw;
+            
         }
-        .ig1{
-            width: ;
+        .searchbox{
+            background-color: rgb(217, 222, 228);
+            /* opacity: ; */
+            align-items: center;
+            width: 20%;
+            margin-bottom: 10vw;
+            margin-top: 9vw;            
+            display: flex;
+            flex-direction: column;
+            box-sizing: content-box;
+            border-radius: 20px;
+            margin-left: 12vw;
+            box-shadow: 0 0 10px 2px rgb(38, 41, 46);
+            
         }
         input{
-            border-color: black;
-            
+            border-radius: 5px;
+            border-left: none;
+            border-top: none;
+            border-right: none;
+            border-color: rgb(190, 187, 187);
+            outline: 5px;
+            border-bottom: 5px inherit;
+            background-color: aliceblue;
             color: black;
-            opacity: 0.5;
-            margin-top: 15vw;
+            margin-top: 5vw;
             padding: 5px;
-            outline: 3px;
-            border-style: solid;
-            width: 13vw;
+            width: 11.5vw;
             height: 2vw;
-            font-size: 1.5vw;
-            border-bottom-left-radius: 12px;
-            border-top-right-radius: 12px;
+            font-size: 1vw;
+            /* box-shadow: 0 3px 2px gray; */
+        }
+        input:hover{
+            box-shadow: 0 3px 2px gray;
         }
         .pin{
             position: relative;
@@ -37,55 +82,62 @@
         }
         .age{
             position: relative;
-            margin-top: 3vw;
+            margin-top: 1.5vw;
         }
         .email{
             position: relative;
-            margin-top: 3vw;
+            margin-top: 1.5vw;
         }
-        button{
-            
+        .result{
+            padding: 1px;
             opacity: 0.9;
-            outline: 3px;
-            border-style: solid;
-            width: 11vw;
-            height: 3.5vw;
-            font-size: 2vw;
+            outline: 1px;
+            border-style: inherit;
+            width: 6vw;
+            height: 2.5vw;
+            font-size: 1.5vw;
             border-radius: 7px;
             position: relative;
             cursor: pointer;
-            margin-left: 2vw;
-            margin-top: 8vw;
-            margin-bottom: 25vw;
+            margin-top: 3vw;
+            margin-bottom: 2vw;
+            box-shadow: 0 0 6px ;
+            background-color: rgb(248, 242, 242);
         }
         button:hover{
             transition: ease-in-out 1ms;
-            background-color: rgb(224, 205, 33);
+            background-color: rgb(38, 114, 202);
             color: white;
+
         }
         .details{
             border: 2px;
             border-style: solid;
             border-color: black;
+            background-image: url("");
         }
         .foot{
             position: relative;
-            margin-top: 50rem;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
-        <img class="ig1" src="https://th.bing.com/th/id/OIP.O0Gt0HiTYSSH8RPAMe8tkQHaCz?w=291&h=132&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="">
+        <li class="head">COWIN</li>
+        <li class="win">winnig over covid-19</li>
+        <!-- <img class="ig1" src="data:image/png;base64,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" alt=""> -->
     </header>
     <article>
      <div class="container">
+         <!-- <img class="ig2" src="https://etimg.etb2bimg.com/photo/82209535.cms" alt=""> -->
+         <div class="searchbox">
         <input class="pin" type="text" placeholder="Enter pincode">
         <input class="age" type="text" placeholder="Enter age">
         <input class="email" type="email" placeholder="Enter email">
-        <button>Result</button> 
-     </div>
+        <button class="result">Result</button> 
+        </div>  
+    </div>
      </article>
      <section>
         <div class="butt">
@@ -94,7 +146,11 @@
         <div class="item">
 
         </div>
-        <footer class="foot"></footer>
+        <footer class="foot">
+            <div>
+                
+            </div>
+        </footer>
 </body>
 <script>
     let body = document.querySelector("body");
